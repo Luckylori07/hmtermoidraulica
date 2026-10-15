@@ -1,0 +1,87 @@
+{
+  "aggiornato": "2026-10-15",
+  "nota_per_il_titolare": "Modifica qui prezzi, testi e voci incluse, poi lancia: python3 tools/build.py (riscrive le card in Home e Offerte). 'prezzo_da' e' solo il numero (senza simbolo).",
+  "contatto": {
+    "telefono": "+39 346 356 2540",
+    "telefono_tel": "+393463562540",
+    "email": "hmtermoidraulica1@gmail.com"
+  },
+  "note": {
+    "detrazioni": "Possibilità di detrazioni fiscali secondo la normativa vigente: ti informiamo in fase di preventivo.",
+    "rate": "Possibilità di pagamento a rate: chiedi informazioni."
+  },
+  "offerte": [
+    {
+      "id": "climatizzatori",
+      "tema": "freddo",
+      "etichetta": "Climatizzatori",
+      "titolo": "Climatizzatori Hisense",
+      "descrizione": "Un unico sistema per raffrescare e riscaldare gli ambienti: efficienza, silenziosità e tecnologia avanzata.",
+      "prezzo_etichetta": "Installazione completa a partire da",
+      "prezzo_da": 1500,
+      "condizione": "Su impianto predisposto",
+      "include": [
+        "Sopralluogo e consulenza",
+        "Installazione certificata",
+        "Assistenza post-vendita",
+        "Smaltimento del vecchio impianto, su richiesta"
+      ],
+      "immagine": {
+        "webp": "assets/img/climatizzatore-hisense-easy-smart.webp",
+        "jpg": "assets/img/climatizzatore-hisense-easy-smart.jpg",
+        "width": 566,
+        "height": 538,
+        "fit": "contain",
+        "alt": "Climatizzatore Hisense Easy Smart: unità interna a parete, telecomando e unità esterna"
+      }
+    },
+    {
+      "id": "caldaie-vaillant",
+      "tema": "caldo",
+      "etichetta": "Caldaie",
+      "titolo": "Caldaie Vaillant",
+      "descrizione": "Alte prestazioni, risparmio energetico e lunga durata nel tempo.",
+      "prezzo_etichetta": "Installazione o sostituzione a partire da",
+      "prezzo_da": 3000,
+      "condizione": "",
+      "include": [
+        "Sopralluogo gratuito",
+        "Installazione certificata",
+        "Assistenza tecnica",
+        "Smaltimento della vecchia caldaia, su richiesta"
+      ],
+      "immagine": {
+        "webp": "assets/img/caldaia-vaillant.webp",
+        "jpg": "assets/img/caldaia-vaillant.jpg",
+        "width": 367,
+        "height": 385,
+        "fit": "cover",
+        "alt": "Caldaia a parete Vaillant di colore bianco con display"
+      }
+    },
+    {
+      "id": "caldaie-baxi",
+      "tema": "caldo",
+      "etichetta": "Caldaie",
+      "titolo": "Caldaie Baxi",
+      "descrizione": "Comfort, risparmio energetico e semplicità d'uso, adatte a ogni tipo di abitazione.",
+      "prezzo_etichetta": "Installazione o sostituzione a partire da",
+      "prezzo_da": 2800,
+      "condizione": "",
+      "include": [
+        "Sopralluogo gratuito",
+        "Installazione certificata",
+        "Adeguamento alla normativa",
+        "Smaltimento della vecchia caldaia, su richiesta"
+      ],
+      "immagine": {
+        "webp": "assets/img/caldaia-baxi.webp",
+        "jpg": "assets/img/caldaia-baxi.jpg",
+        "width": 431,
+        "height": 469,
+        "fit": "cover",
+        "alt": "Caldaia a parete Baxi di colore bianco con display"
+      }
+    }
+  ]
+}

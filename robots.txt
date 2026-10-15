@@ -1,0 +1,3 @@
+# DEMO: sito di prova non indicizzabile
+User-agent: *
+Disallow: /

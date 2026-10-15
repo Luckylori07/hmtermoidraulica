@@ -1,6 +1,6 @@
 # HM Termoidraulica - proposta di sito (DEMO)
 
-Sito statico (HTML + CSS + JS, nessun framework, nessuna dipendenza, nessun cookie) per HM Termoidraulica, Gallarate (VA).
+Sito statico (HTML + CSS + JS, nessun framework, nessuna dipendenza) per HM Termoidraulica, Gallarate (VA).
 Proposta realizzata da [Tramontis](https://tramontis.netlify.app/), **non ancora attiva**.
 
 ```
@@ -65,4 +65,4 @@ Sito statico: basta caricare la cartella così com'è.
 
 - Font self-hosted (Bricolage Grotesque e Plus Jakarta Sans, licenza OFL, in `assets/fonts/`).
 - Animazioni solo con CSS, Web Animations API e IntersectionObserver; tutto ridotto con `prefers-reduced-motion`.
-- Nessuno script di terze parti, nessun tracciamento, nessun cookie. Contatti solo via `tel:`, WhatsApp e `mailto:` precompilato.
+- Nessuno script di terze parti, nessun tracciamento, nessun cookie proprio. Unica risorsa esterna: la mappa Google incorporata in `contatti.html` (iframe senza chiave API). Contatti via `tel:`, WhatsApp e `mailto:` precompilato.

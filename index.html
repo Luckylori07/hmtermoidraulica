@@ -24,7 +24,7 @@
     <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/css/style.css">
     <script>document.documentElement.classList.remove('no-js')</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Plumber", "HVACBusiness"], "name": "HM Termoidraulica", "url": "https://hmtermoidraulica.it/", "logo": "https://hmtermoidraulica.it/assets/img/logo-hm-termoidraulica.png", "image": "https://hmtermoidraulica.it/assets/img/og-cover.jpg", "description": "Impianti termoidraulici, caldaie, climatizzatori, pompe di calore, bagni e riparazioni a Gallarate e in provincia di Varese.", "telephone": "+39 346 356 2540", "email": "hmtermoidraulica1@gmail.com", "vatID": "IT03876450127", "address": {"@type": "PostalAddress", "addressLocality": "Gallarate", "addressRegion": "VA", "postalCode": "21013", "addressCountry": "IT"}, "areaServed": {"@type": "AdministrativeArea", "name": "Provincia di Varese"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "18:00"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Plumber", "HVACBusiness"], "name": "HM Termoidraulica", "legalName": "Hm Termoidraulica di Simone Cicciarello", "url": "https://hmtermoidraulica.it/", "logo": "https://hmtermoidraulica.it/assets/img/logo-hm-termoidraulica.png", "image": "https://hmtermoidraulica.it/assets/img/og-cover.jpg", "description": "Impianti termoidraulici, caldaie, climatizzatori, pompe di calore, bagni e riparazioni a Gallarate e in provincia di Varese.", "telephone": "+39 346 356 2540", "email": "hmtermoidraulica1@gmail.com", "vatID": "IT03876450127", "address": {"@type": "PostalAddress", "streetAddress": "Via Curtatone 45", "addressLocality": "Gallarate", "addressRegion": "VA", "postalCode": "21013", "addressCountry": "IT"}, "areaServed": {"@type": "AdministrativeArea", "name": "Provincia di Varese"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "18:00"}]}</script>
 <!--/build:head-->
 </head>
 <body data-demo>
@@ -71,9 +71,6 @@
           <a class="btn" data-magnetic href="tel:+393463562540"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Chiama ora</span></a>
           <a class="btn btn--wa" data-magnetic href="https://wa.me/393463562540" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
           <a class="link-arrow hero__quote" href="mailto:hmtermoidraulica1@gmail.com?subject=Richiesta%20preventivo%20gratuito&amp;body=Buongiorno%2C%0A%0Avorrei%20un%20preventivo%20gratuito%20per%3A%0A%0AComune%3A%20%0ATelefono%20per%20essere%20ricontattato%3A%20%0A%0AGrazie"><span>Richiedi preventivo gratuito</span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="hero__status rv" style="--i:2">
-          <p class="status-pill" data-status data-state="unknown"><span class="status-pill__dot" aria-hidden="true"></span><span data-status-text>Lun-Ven 8:00-18:00</span></p>
         </div>
       </div>
 
@@ -152,6 +149,12 @@
           </div>
           <div class="season__panes">
             <div class="season__pane season__pane--hot is-active" id="pane-hot" role="tabpanel" aria-labelledby="tab-hot">
+              <figure class="season__fig">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/caldaie-vaillant-baxi-hm-800.webp 800w, assets/img/caldaie-vaillant-baxi-hm-1200.webp 1200w" sizes="(min-width:1100px) 560px, 90vw">
+                  <img src="assets/img/caldaie-vaillant-baxi-hm-800.jpg" width="800" height="640" alt="Tre caldaie a parete Vaillant e Baxi su sfondo grafite, con il logo HM Termoidraulica" loading="lazy" decoding="async">
+                </picture>
+              </figure>
               <div>
                 <h3 class="sr-only">Riscaldamento</h3>
                 <p style="font-size:1.1rem;margin-bottom:16px;color:#2a3f58">Caldaie, impianti di riscaldamento e pompe di calore: una casa calda e un impianto che consuma il giusto.</p>
@@ -164,6 +167,12 @@
               </ul>
             </div>
             <div class="season__pane season__pane--cold" id="pane-cold" role="tabpanel" aria-labelledby="tab-cold" inert aria-hidden="true">
+              <figure class="season__fig season__fig--garden">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/pompa-di-calore-giardino.webp">
+                  <img src="assets/img/pompa-di-calore-giardino.jpg" width="784" height="514" alt="Unità esterna di una pompa di calore installata nel giardino di una casa" loading="lazy" decoding="async">
+                </picture>
+              </figure>
               <div>
                 <h3 class="sr-only">Climatizzazione</h3>
                 <p style="font-size:1.1rem;margin-bottom:16px;color:#2a3f58">Climatizzatori e pompe di calore per ambienti domestici e professionali: comfort e efficienza anche nei mesi caldi.</p>
@@ -277,9 +286,66 @@
         <h2 id="offers-title" data-split>Offerte per caldaie e climatizzatori</h2>
         <p>Prezzi indicativi, a partire da: dopo il sopralluogo gratuito ti facciamo un preventivo preciso.</p>
       </div>
-      <div class="offers" data-offers="home">
-        <p class="offers-loading">Caricamento delle offerte...</p>
-        <noscript><p class="offers-loading">Per vedere le offerte attiva JavaScript, oppure <a href="tel:+393463562540">chiamaci al +39 346 356 2540</a>.</p></noscript>
+      <div class="offers">
+<!--build:offers-->
+      <article class="offer offer--cold offer--contain has-ico rv" style="--i:0" id="climatizzatori" data-tilt>
+        <figure class="offer__fig">
+          <span class="offer__tag"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-snow"/></svg>Climatizzatori</span>
+          <div class="offer__float"><picture>
+            <source type="image/webp" srcset="assets/img/climatizzatore-hisense-easy-smart.webp">
+            <img src="assets/img/climatizzatore-hisense-easy-smart.jpg" width="566" height="538" alt="Climatizzatore Hisense Easy Smart: unità interna a parete, telecomando e unità esterna" loading="lazy" decoding="async">
+          </picture></div>
+        </figure>
+        <div class="offer__body">
+          <h3>Climatizzatori Hisense</h3>
+          <p class="offer__desc">Un unico sistema per raffrescare e riscaldare gli ambienti: efficienza, silenziosità e tecnologia avanzata.</p>
+          <p class="offer__price"><span class="offer__from">Installazione completa a partire da</span><span class="offer__amount">1.500 €</span><span class="offer__cond">Su impianto predisposto</span></p>
+          <ul class="checklist"><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Sopralluogo e consulenza</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Installazione certificata</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Assistenza post-vendita</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Smaltimento del vecchio impianto, su richiesta</span></li></ul>
+          <div class="offer__cta">
+            <a class="btn" data-magnetic href="mailto:hmtermoidraulica1@gmail.com?subject=Richiesta%20preventivo%20-%20Climatizzatori%20Hisense&amp;body=Buongiorno%2C%0A%0Avorrei%20un%20preventivo%20gratuito%20per%3A%20Climatizzatori%20Hisense.%0A%0AComune%3A%20%0ATelefono%20per%20essere%20ricontattato%3A%20%0A%0AGrazie"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg><span>Richiedi preventivo gratuito</span></a>
+            <a class="btn btn--ghost" data-magnetic href="tel:+393463562540"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Chiama +39 346 356 2540</span></a>
+          </div>
+        </div>
+      </article>
+      <article class="offer offer--hot offer--cover has-ico rv" style="--i:1" id="caldaie-vaillant" data-tilt>
+        <figure class="offer__fig">
+          <span class="offer__tag"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg>Caldaie</span>
+          <div class="offer__float"><picture>
+            <source type="image/webp" srcset="assets/img/caldaia-vaillant.webp">
+            <img src="assets/img/caldaia-vaillant.jpg" width="367" height="385" alt="Caldaia a parete Vaillant di colore bianco con display" loading="lazy" decoding="async">
+          </picture></div>
+        </figure>
+        <div class="offer__body">
+          <h3>Caldaie Vaillant</h3>
+          <p class="offer__desc">Alte prestazioni, risparmio energetico e lunga durata nel tempo.</p>
+          <p class="offer__price"><span class="offer__from">Installazione o sostituzione a partire da</span><span class="offer__amount">3.000 €</span></p>
+          <ul class="checklist"><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Sopralluogo gratuito</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Installazione certificata</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Assistenza tecnica</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Smaltimento della vecchia caldaia, su richiesta</span></li></ul>
+          <div class="offer__cta">
+            <a class="btn" data-magnetic href="mailto:hmtermoidraulica1@gmail.com?subject=Richiesta%20preventivo%20-%20Caldaie%20Vaillant&amp;body=Buongiorno%2C%0A%0Avorrei%20un%20preventivo%20gratuito%20per%3A%20Caldaie%20Vaillant.%0A%0AComune%3A%20%0ATelefono%20per%20essere%20ricontattato%3A%20%0A%0AGrazie"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg><span>Richiedi preventivo gratuito</span></a>
+            <a class="btn btn--ghost" data-magnetic href="tel:+393463562540"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Chiama +39 346 356 2540</span></a>
+          </div>
+        </div>
+      </article>
+      <article class="offer offer--hot offer--cover has-ico rv" style="--i:2" id="caldaie-baxi" data-tilt>
+        <figure class="offer__fig">
+          <span class="offer__tag"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg>Caldaie</span>
+          <div class="offer__float"><picture>
+            <source type="image/webp" srcset="assets/img/caldaia-baxi.webp">
+            <img src="assets/img/caldaia-baxi.jpg" width="431" height="469" alt="Caldaia a parete Baxi di colore bianco con display" loading="lazy" decoding="async">
+          </picture></div>
+        </figure>
+        <div class="offer__body">
+          <h3>Caldaie Baxi</h3>
+          <p class="offer__desc">Comfort, risparmio energetico e semplicità d&#x27;uso, adatte a ogni tipo di abitazione.</p>
+          <p class="offer__price"><span class="offer__from">Installazione o sostituzione a partire da</span><span class="offer__amount">2.800 €</span></p>
+          <ul class="checklist"><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Sopralluogo gratuito</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Installazione certificata</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Adeguamento alla normativa</span></li><li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Smaltimento della vecchia caldaia, su richiesta</span></li></ul>
+          <div class="offer__cta">
+            <a class="btn" data-magnetic href="mailto:hmtermoidraulica1@gmail.com?subject=Richiesta%20preventivo%20-%20Caldaie%20Baxi&amp;body=Buongiorno%2C%0A%0Avorrei%20un%20preventivo%20gratuito%20per%3A%20Caldaie%20Baxi.%0A%0AComune%3A%20%0ATelefono%20per%20essere%20ricontattato%3A%20%0A%0AGrazie"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg><span>Richiedi preventivo gratuito</span></a>
+            <a class="btn btn--ghost" data-magnetic href="tel:+393463562540"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Chiama +39 346 356 2540</span></a>
+          </div>
+        </div>
+      </article>
+<!--/build:offers-->
       </div>
       <p style="margin-top:28px"><a class="link-arrow" href="offerte.html"><span>Tutte le offerte, detrazioni e pagamento a rate</span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></p>
     </div>
@@ -307,7 +373,7 @@
         <h2 id="zone-title" style="font-size:clamp(2rem,5.2vw,3.3rem);font-weight:800" data-split>Dove lavoriamo</h2>
         <p style="margin-top:16px;color:var(--muted);font-size:1.1rem">Siamo a Gallarate e interveniamo principalmente in provincia di Varese. Per lavori in altre zone valutiamo caso per caso: chiamaci e ne parliamo.</p>
         <ul class="zone__list">
-          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span>Sede legale: 21013 Gallarate (VA)</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span>Sede legale: Via Curtatone 45, 21013 Gallarate (VA)</span></li>
           <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Zona principale: provincia di Varese</span></li>
           <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Altre zone: da valutare caso per caso</span></li>
         </ul>
@@ -350,9 +416,17 @@
   <!-- CONTATTI -->
   <section class="section contact on-dark" id="contatti" aria-labelledby="contact-title">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 id="contact-title" data-split>Hai un problema o vuoi un preventivo gratuito?</h2>
-        <p>Non aspettare: chiamaci o scrivici. Il modo più rapido è il telefono.</p>
+      <div class="contact__intro">
+        <div class="sec-head">
+          <h2 id="contact-title" data-split>Hai un problema o vuoi un preventivo gratuito?</h2>
+          <p>Non aspettare: chiamaci o scrivici. Il modo più rapido è il telefono.</p>
+        </div>
+        <figure class="photo photo--graphite rv">
+          <picture>
+            <source type="image/webp" srcset="assets/img/attrezzi-idraulici-hm-800.webp 800w, assets/img/attrezzi-idraulici-hm-1200.webp 1200w" sizes="(min-width:900px) 480px, 90vw">
+            <img src="assets/img/attrezzi-idraulici-hm-800.jpg" width="800" height="533" alt="Chiavi inglesi, raccordi e tubi su fondo scuro con il logo HM Termoidraulica" loading="lazy" decoding="async">
+          </picture>
+        </figure>
       </div>
       <div class="contact__grid">
         <a class="cbox has-ico" data-magnetic href="tel:+393463562540"><span class="cbox__ico cbox__ico--call"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></span><span><small>Chiama</small><strong>+39 346 356 2540</strong></span></a>
@@ -360,16 +434,15 @@
         <a class="cbox has-ico" data-magnetic href="mailto:hmtermoidraulica1@gmail.com?subject=Richiesta%20preventivo%20gratuito&amp;body=Buongiorno%2C%0A%0Avorrei%20un%20preventivo%20gratuito%20per%3A%0A%0AComune%3A%20%0ATelefono%20per%20essere%20ricontattato%3A%20%0A%0AGrazie"><span class="cbox__ico cbox__ico--mail"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span><span><small>Scrivi un'email</small><strong>hmtermoidraulica1@<wbr>gmail.com</strong></span></a>
       </div>
       <div class="hours" data-hours>
-        <p class="status-pill" data-status data-state="unknown"><span class="status-pill__dot" aria-hidden="true"></span><span data-status-text>Lun-Ven 8:00-18:00</span></p>
         <h3>Orari</h3>
         <dl>
-          <div data-day="1"><dt>Lunedì</dt><dd>8:00-18:00</dd></div>
-          <div data-day="2"><dt>Martedì</dt><dd>8:00-18:00</dd></div>
-          <div data-day="3"><dt>Mercoledì</dt><dd>8:00-18:00</dd></div>
-          <div data-day="4"><dt>Giovedì</dt><dd>8:00-18:00</dd></div>
-          <div data-day="5"><dt>Venerdì</dt><dd>8:00-18:00</dd></div>
-          <div data-day="6"><dt>Sabato</dt><dd>Chiuso</dd></div>
-          <div data-day="0"><dt>Domenica</dt><dd>Chiuso</dd></div>
+          <div><dt>Lunedì</dt><dd>8:00-18:00</dd></div>
+          <div><dt>Martedì</dt><dd>8:00-18:00</dd></div>
+          <div><dt>Mercoledì</dt><dd>8:00-18:00</dd></div>
+          <div><dt>Giovedì</dt><dd>8:00-18:00</dd></div>
+          <div><dt>Venerdì</dt><dd>8:00-18:00</dd></div>
+          <div><dt>Sabato</dt><dd>Chiuso</dd></div>
+          <div><dt>Domenica</dt><dd>Chiuso</dd></div>
         </dl>
       </div>
     </div>
@@ -391,7 +464,7 @@
           <li><a href="tel:+393463562540">Tel +39 346 356 2540</a></li>
           <li><a href="https://wa.me/393463562540" target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="mailto:hmtermoidraulica1@gmail.com">hmtermoidraulica1@gmail.com</a></li>
-          <li>Gallarate (VA)</li>
+          <li>Via Curtatone 45, 21013 Gallarate (VA)</li>
         </ul>
       </div>
       <div>

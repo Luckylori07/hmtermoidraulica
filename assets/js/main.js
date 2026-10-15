@@ -9,7 +9,7 @@
   const reduceQuery = matchMedia("(prefers-reduced-motion: reduce)");
   const reduce = () => reduceQuery.matches;
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
-  const TZ = "Europe/Rome";
+  const TZ = "Europe/Rome";   // le offerte sono HTML statico generato da tools/build.py (data/offerte.json)
 
   /* ---------- punto di controllo DEMO ----------
      Se l'attributo data-demo viene tolto dal <body>, banner e filigrana spariscono (CSS)
@@ -114,40 +114,8 @@
     counters.forEach((c) => cio.observe(c));
   }
 
-  /* ---------- Aperto ora / Chiuso (fuso Europe/Rome) ---------- */
-  const OPEN_H = 8, CLOSE_H = 18;               // lun-ven 8:00-18:00
-  const WD = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-  const romeNow = () => {
-    const parts = new Intl.DateTimeFormat("en-GB", {
-      timeZone: TZ, weekday: "short", hour: "numeric", minute: "numeric", hourCycle: "h23",
-    }).formatToParts(new Date());
-    const get = (t) => parts.find((p) => p.type === t).value;
-    return { day: WD[get("weekday")], h: Number(get("hour")), m: Number(get("minute")), month: Number(
-      new Intl.DateTimeFormat("en-GB", { timeZone: TZ, month: "numeric" }).format(new Date())) };
-  };
-  const statusInfo = () => {
-    const { day, h } = romeNow();
-    const weekday = day >= 1 && day <= 5;
-    if (weekday && h >= OPEN_H && h < CLOSE_H) return { state: "open", text: `Aperto ora, chiude alle ${CLOSE_H}:00`, day };
-    let when;
-    if (weekday && h < OPEN_H) when = `apre oggi alle ${OPEN_H}:00`;
-    else if (day >= 1 && day <= 4) when = `riapre domani alle ${OPEN_H}:00`;
-    else when = `riapre lunedì alle ${OPEN_H}:00`;
-    return { state: "closed", text: `Chiuso ora, ${when}`, day };
-  };
-  const updateStatus = () => {
-    const info = statusInfo();
-    $$("[data-status]").forEach((el) => {
-      el.dataset.state = info.state;
-      const t = $("[data-status-text]", el);
-      if (t) t.textContent = info.text;
-    });
-    $$("[data-hours] [data-day]").forEach((row) => row.classList.toggle("is-today", Number(row.dataset.day) === info.day));
-  };
-  if ($$("[data-status]").length) {
-    updateStatus();
-    setInterval(updateStatus, 60000);
-  }
+  /* ---------- mese corrente a Roma (serve per la stagione di partenza) ---------- */
+  const romeMonth = () => Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, month: "numeric" }).format(new Date()));
 
   /* ---------- hero: tubo che si disegna + goccia che scorre ---------- */
   const scene = $("[data-scene]");
@@ -206,7 +174,7 @@
       });
     });
     // stagione di partenza in base al mese: aprile-settembre freddo, altrimenti caldo
-    const m = romeNow().month;
+    const m = romeMonth();
     season.classList.add("is-init");
     setMode(m >= 4 && m <= 9 ? "cold" : "hot");
     requestAnimationFrame(() => requestAnimationFrame(() => season.classList.remove("is-init")));
@@ -227,67 +195,6 @@
       }
     }), { rootMargin: "-30% 0px -60% 0px" });
     $$(".sd").forEach((s) => sio.observe(s));
-  }
-
-  /* ---------- offerte da data/offerte.json ---------- */
-  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const euro = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " €";
-  const icon = (name) => `<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`;
-  const offerCard = (o, c) => {
-    const cold = o.tema === "freddo";
-    const img = o.immagine;
-    const body = encodeURIComponent(
-      `Buongiorno,\n\nvorrei un preventivo gratuito per: ${o.titolo}.\n\nComune: \nTelefono per essere ricontattato: \n\nGrazie`
-    );
-    const subject = encodeURIComponent(`Richiesta preventivo - ${o.titolo}`);
-    return `
-      <article class="offer offer--${cold ? "cold" : "hot"} offer--${img.fit === "contain" ? "contain" : "cover"} has-ico rv" id="${esc(o.id)}" data-tilt>
-        <figure class="offer__fig">
-          <span class="offer__tag">${icon(cold ? "snow" : "flame")}${esc(o.etichetta)}</span>
-          <div class="offer__float"><picture>
-            <source type="image/webp" srcset="${esc(img.webp)}">
-            <img src="${esc(img.jpg)}" width="${img.width}" height="${img.height}" alt="${esc(img.alt)}" loading="lazy" decoding="async">
-          </picture></div>
-        </figure>
-        <div class="offer__body">
-          <h3>${esc(o.titolo)}</h3>
-          <p class="offer__desc">${esc(o.descrizione)}</p>
-          <p class="offer__price"><span class="offer__from">${esc(o.prezzo_etichetta)}</span><span class="offer__amount">${euro(o.prezzo_da)}</span>${o.condizione ? `<span class="offer__cond">${esc(o.condizione)}</span>` : ""}</p>
-          <ul class="checklist">${o.include.map((i) => `<li>${icon("check")}<span>${esc(i)}</span></li>`).join("")}</ul>
-          <div class="offer__cta">
-            <a class="btn" data-magnetic href="mailto:${esc(c.email)}?subject=${subject}&amp;body=${body}">${icon("mail")}<span>Richiedi preventivo gratuito</span></a>
-            <a class="btn btn--ghost" data-magnetic href="tel:${esc(c.telefono_tel)}">${icon("phone")}<span>Chiama ${esc(c.telefono)}</span></a>
-          </div>
-        </div>
-      </article>`;
-  };
-  const offerBoxes = $$("[data-offers]");
-  if (offerBoxes.length) {
-    fetch("data/offerte.json", { cache: "no-cache" })
-      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then((data) => {
-        offerBoxes.forEach((box) => {
-          box.innerHTML = data.offerte.map((o) => offerCard(o, data.contatto)).join("");
-          $$(".rv", box).forEach((el, i) => { el.style.setProperty("--i", i); });
-          initReveal($$(".rv", box));
-          initInteractions(box);
-        });
-        $$("[data-note]").forEach((el) => { el.textContent = data.note[el.dataset.note] || ""; });
-      })
-      .catch(() => {
-        offerBoxes.forEach((box) => {
-          box.innerHTML = '<p class="offers-loading">Non riusciamo a caricare le offerte. <a href="tel:+393463562540">Chiamaci al +39 346 356 2540</a>.</p>';
-        });
-      });
-  }
-
-  function initReveal(els) {
-    if ("IntersectionObserver" in window && !reduce()) {
-      const io2 = new IntersectionObserver((entries) => entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add("is-in"); io2.unobserve(e.target); }
-      }), { threshold: 0.12 });
-      els.forEach((t) => io2.observe(t));
-    } else els.forEach((t) => t.classList.add("is-in"));
   }
 
   /* ---------- tilt delle offerte + pulsanti magnetici ---------- */

@@ -1,6 +1,6 @@
 {
   "aggiornato": "2026-10-15",
-  "nota_per_il_titolare": "Modifica qui prezzi, testi e voci incluse: le pagine Home e Offerte si aggiornano da sole. 'prezzo_da' e' solo il numero (senza simbolo).",
+  "nota_per_il_titolare": "Modifica qui prezzi, testi e voci incluse, poi lancia: python3 tools/build.py (riscrive le card in Home e Offerte). 'prezzo_da' e' solo il numero (senza simbolo).",
   "contatto": {
     "telefono": "+39 346 356 2540",
     "telefono_tel": "+393463562540",

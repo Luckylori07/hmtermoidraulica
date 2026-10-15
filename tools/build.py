@@ -14,6 +14,7 @@ import json
 import re
 import sys
 from html import escape
+from urllib.parse import quote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -26,6 +27,9 @@ PHONE_TEL = "+393463562540"
 WA = "https://wa.me/393463562540"
 EMAIL = "hmtermoidraulica1@gmail.com"
 PIVA = "03876450127"
+LEGAL_NAME = "Hm Termoidraulica di Simone Cicciarello"   # da registri pubblici (impresa individuale): da confermare
+STREET = "Via Curtatone 45"
+ADDRESS = "Via Curtatone 45, 21013 Gallarate (VA)"
 TRAMONTIS = "https://tramontis.netlify.app/"
 
 PAGES = {
@@ -105,6 +109,7 @@ def head(page, meta):
             "@context": "https://schema.org",
             "@type": ["Plumber", "HVACBusiness"],
             "name": NAME,
+            "legalName": LEGAL_NAME,
             "url": SITE + "/",
             "logo": f"{SITE}/assets/img/logo-hm-termoidraulica.png",
             "image": og_img,
@@ -114,6 +119,7 @@ def head(page, meta):
             "vatID": "IT" + PIVA,
             "address": {
                 "@type": "PostalAddress",
+                "streetAddress": STREET,
                 "addressLocality": "Gallarate",
                 "addressRegion": "VA",
                 "postalCode": "21013",
@@ -189,7 +195,7 @@ def foot(meta):
           <li><a href="tel:{PHONE_TEL}">Tel {PHONE_DISPLAY}</a></li>
           <li><a href="{WA}" target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-          <li>Gallarate (VA)</li>
+          <li>{ADDRESS}</li>
         </ul>
       </div>
       <div>
@@ -222,6 +228,54 @@ def foot(meta):
 {(ROOT / "tools/partials/sprite.html").read_text(encoding="utf-8").strip()}"""
 
 
+def fmt_euro(n):
+    return f"{int(n):,}".replace(",", ".") + " €"
+
+
+def render_offers():
+    data = json.loads((ROOT / "data/offerte.json").read_text(encoding="utf-8"))
+    c = data["contatto"]
+    cards = []
+    for i, o in enumerate(data["offerte"]):
+        cold = o["tema"] == "freddo"
+        img = o["immagine"]
+        body = quote(f"Buongiorno,\n\nvorrei un preventivo gratuito per: {o['titolo']}.\n\nComune: \nTelefono per essere ricontattato: \n\nGrazie")
+        subject = quote(f"Richiesta preventivo - {o['titolo']}")
+        include = "".join(f'<li>{icon("check")}<span>{escape(x)}</span></li>' for x in o["include"])
+        cond = f'<span class="offer__cond">{escape(o["condizione"])}</span>' if o.get("condizione") else ""
+        cards.append(f"""      <article class="offer offer--{'cold' if cold else 'hot'} offer--{'contain' if img.get('fit') == 'contain' else 'cover'} has-ico rv" style="--i:{i}" id="{escape(o['id'])}" data-tilt>
+        <figure class="offer__fig">
+          <span class="offer__tag">{icon('snow' if cold else 'flame')}{escape(o['etichetta'])}</span>
+          <div class="offer__float"><picture>
+            <source type="image/webp" srcset="{escape(img['webp'])}">
+            <img src="{escape(img['jpg'])}" width="{img['width']}" height="{img['height']}" alt="{escape(img['alt'], quote=True)}" loading="lazy" decoding="async">
+          </picture></div>
+        </figure>
+        <div class="offer__body">
+          <h3>{escape(o['titolo'])}</h3>
+          <p class="offer__desc">{escape(o['descrizione'])}</p>
+          <p class="offer__price"><span class="offer__from">{escape(o['prezzo_etichetta'])}</span><span class="offer__amount">{fmt_euro(o['prezzo_da'])}</span>{cond}</p>
+          <ul class="checklist">{include}</ul>
+          <div class="offer__cta">
+            <a class="btn" data-magnetic href="mailto:{escape(c['email'])}?subject={subject}&amp;body={body}">{icon('mail')}<span>Richiedi preventivo gratuito</span></a>
+            <a class="btn btn--ghost" data-magnetic href="tel:{escape(c['telefono_tel'])}">{icon('phone')}<span>Chiama {escape(c['telefono'])}</span></a>
+          </div>
+        </div>
+      </article>""")
+    return "\n".join(cards), data["note"]
+
+
+def render_notes(notes):
+    return f"""        <div class="note-box__item has-ico">
+          {icon('shield')}
+          <div><strong>Detrazioni fiscali</strong><p>{escape(notes['detrazioni'])}</p></div>
+        </div>
+        <div class="note-box__item has-ico">
+          {icon('sliders')}
+          <div><strong>Pagamento a rate</strong><p>{escape(notes['rate'])}</p></div>
+        </div>"""
+
+
 def replace_region(html, name, content, path):
     pat = re.compile(rf"(<!--build:{name}-->)(.*?)(<!--/build:{name}-->)", re.S)
     if not pat.search(html):
@@ -230,9 +284,14 @@ def replace_region(html, name, content, path):
 
 
 def main():
+    offers_html, notes = render_offers()
     for page, meta in PAGES.items():
         path = ROOT / page
         html = path.read_text(encoding="utf-8")
+        if "<!--build:offers-->" in html:
+            html = replace_region(html, "offers", offers_html, page)
+        if "<!--build:notes-->" in html:
+            html = replace_region(html, "notes", render_notes(notes), page)
         html = replace_region(html, "head", head(page, meta), page)
         html = replace_region(html, "top", top(meta), page)
         html = replace_region(html, "foot", foot(meta), page)

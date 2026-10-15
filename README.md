@@ -11,7 +11,7 @@ data/offerte.json         tools/build.py         sitemap.xml  robots.txt  .nojek
 
 ## Provarlo in locale
 
-Serve un piccolo server (le offerte vengono lette da `data/offerte.json`, quindi non funziona aprendo il file con doppio clic):
+Basta aprire `index.html` con un doppio clic: nessun server necessario (le offerte sono già scritte nell'HTML). Se preferisci un server locale:
 
 ```bash
 python3 -m http.server 8000     # poi apri http://localhost:8000
@@ -21,9 +21,10 @@ python3 -m http.server 8000     # poi apri http://localhost:8000
 
 | Cosa | Dove |
 |---|---|
-| Offerte (prezzi, testi, voci incluse, immagini) | `data/offerte.json`: Home e Offerte si aggiornano da sole. `prezzo_da` è solo il numero (es. `1500`). |
-| Note su detrazioni e rate | `data/offerte.json`, chiave `note` |
-| Telefono, email, WhatsApp, P.IVA, orari | Si ripetono in più punti: cerca `3463562540`, `hmtermoidraulica1@gmail.com`, `03876450127` in tutti i file (`tools/build.py` per header/footer/JSON-LD). Gli orari per l'indicatore "Aperto ora" stanno in `assets/js/main.js` (`OPEN_H`, `CLOSE_H`) e nelle tabelle di `index.html` e `contatti.html`. |
+| Offerte (prezzi, testi, voci incluse, immagini) | Modifica `data/offerte.json` (`prezzo_da` è solo il numero, es. `1500`), poi lancia `python3 tools/build.py`: Home e Offerte vengono riscritte con i nuovi dati. |
+| Note su detrazioni e rate | `data/offerte.json`, chiave `note` (poi `python3 tools/build.py`) |
+| Dati societari (ragione sociale, via, P.IVA) | Costanti in cima a `tools/build.py` (`LEGAL_NAME`, `STREET`, `ADDRESS`, `PIVA`) per footer e JSON-LD; poi i testi in `privacy.html`, `note-legali.html`, `contatti.html` e `index.html` (cerca `Curtatone`). |
+| Telefono, email, WhatsApp, orari | Si ripetono in più punti: cerca `3463562540`, `hmtermoidraulica1@gmail.com`, `03876450127` in tutti i file (`tools/build.py` per header/footer/JSON-LD). Gli orari stanno nelle tabelle di `index.html` e `contatti.html` e nel footer (`tools/build.py`). |
 | Testi dei servizi | `servizi.html` (dettaglio) e griglia in `index.html` |
 | FAQ | in fondo a `index.html` |
 | Colori e font | variabili `:root` all'inizio di `assets/css/style.css` |
@@ -34,7 +35,7 @@ python3 -m http.server 8000     # poi apri http://localhost:8000
 python3 tools/build.py
 ```
 
-Il contenuto delle pagine (dentro `<main>`) non viene mai toccato dallo script.
+Lo script riscrive anche le card delle offerte (da `data/offerte.json`). Il resto del contenuto delle pagine (dentro `<main>`) non viene mai toccato.
 
 ## Aggiungere foto
 
@@ -50,7 +51,7 @@ Un solo punto di controllo: l'attributo `data-demo` sul `<body>`.
   Toglie in tutte le pagine banner, filigrana, `noindex`, prefisso `[DEMO]` nel titolo e `data-demo`; riscrive `robots.txt` (indicizzazione consentita) e `sitemap.xml`.
 - **Metodo rapido a mano:** cancella `data-demo` dal `<body>`: banner e filigrana spariscono (CSS) e il JS rimuove `noindex` e `[DEMO]`. Per i motori di ricerca è meglio il metodo definitivo, perché `noindex` resta nel codice HTML.
 - Il footer contiene la riga "Proposta di sito realizzata da Tramontis": se non serve più, rimuovila da `tools/build.py` (funzione `foot`) e rilancia lo script.
-- Prima di andare online: compila i campi `[DA COMPILARE]` (ragione sociale, data della privacy) in `privacy.html` e `note-legali.html`, e verifica che `og:image`/JSON-LD usino il dominio definitivo (`SITE` in `tools/build.py`).
+- Prima di andare online: fai confermare al titolare ragione sociale e indirizzo (presi da registri pubblici online) e la data della privacy, e verifica che `og:image`/JSON-LD usino il dominio definitivo (`SITE` in `tools/build.py`).
 
 ## Pubblicare
 
